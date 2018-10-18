@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="ic_size_port">1024</integer>
+    <integer name="login_max_line">1</integer>
+    <integer name="login_account_max_length">11</integer>
+    <integer name="login_password_max_length">18</integer>
+</resources>

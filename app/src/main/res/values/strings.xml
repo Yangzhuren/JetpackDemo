@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">AdvancedDjt</string>
+    <!--hint-->
+    <string name="hint_login_account">账号</string>
+    <string name="hint_login_password">密码</string>
+    <!--button-->
+    <string name="btn_login">登 录</string>
+
+    <!--content description-->
+    <string name="describe_ic_login_logo">动检通(上海牧中)</string>
+    <string name="describe_ic_nav_drawer_head">头像</string>
+
+    <!--menu-->
+    <string name="menu_home">首页</string>
+    <string name="menu_trend">查询</string>
+    <string name="menu_work">执法</string>
+    <string name="menu_wiki">督查</string>
+    <string name="menu_me">我的</string>
+
+    <!--toast-->
+    <string name="toast_repress_exit">再按一次退出</string>
+</resources>

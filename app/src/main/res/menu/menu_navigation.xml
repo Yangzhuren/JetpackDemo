@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home_fragment"
+        android:icon="@drawable/ic_nv_home_active"
+        android:title="@string/menu_home" />
+
+    <item
+        android:id="@+id/trend_fragment"
+        android:icon="@drawable/ic_nv_trend_active"
+        android:title="@string/menu_trend" />
+
+    <item
+        android:id="@+id/menu_work"
+        android:icon="@drawable/ic_nv_work_active"
+        android:title="@string/menu_work" />
+
+    <item
+        android:id="@+id/menu_supervision"
+        android:icon="@drawable/ic_nv_wiki_active"
+        android:title="@string/menu_wiki" />
+
+    <item
+        android:id="@+id/menu_me"
+        android:icon="@drawable/ic_nv_mine_active"
+        android:title="@string/menu_me" />
+</menu>

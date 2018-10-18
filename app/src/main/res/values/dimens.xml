@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--common-->
+    <dimen name="ic_size">30dp</dimen>
+    <dimen name="btn_text_size">18sp</dimen>
+    <!--login-->
+    <dimen name="login_logo_size">180dp</dimen>
+    <dimen name="login_content_margin_bottom">120dp</dimen>
+    <dimen name="login_account_size">30dp</dimen>
+    <dimen name="login_ic_margin_top">10dp</dimen>
+    <dimen name="login_btn_margin_top">20dp</dimen>
+    <dimen name="login_ic_margin_left">40dp</dimen>
+    <dimen name="login_edit_to_icon">10dp</dimen>
+    <dimen name="login_edit_text_size">14sp</dimen>
+
+    <!--nav-head-->
+
+    <dimen name="nav_drawer_header_height">192dp</dimen>
+    <dimen name="nav_drawer_header_padding">16dp</dimen>
+    <dimen name="nav_drawer_header_image_width">100dp</dimen>
+</resources>

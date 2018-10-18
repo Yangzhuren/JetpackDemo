@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/home_fragment">
+
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="com.mzcloud.djt.advanceddjt.ui.farmmain.FarmMainFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/farm_main_fragment" />
+
+    <fragment
+        android:id="@+id/trend_fragment"
+        android:name="com.mzcloud.djt.advanceddjt.ui.farmmain.FarmTrendFragment"
+        android:label="@string/menu_trend"
+        tools:layout="@layout/farm_trend_fragment" />
+
+</navigation>
