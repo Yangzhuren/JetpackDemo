@@ -3,6 +3,7 @@ package com.mzcloud.djt.advanceddjt
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -11,6 +12,7 @@ import com.mzcloud.djt.advanceddjt.databinding.ActivityLoginBinding
 import com.mzcloud.djt.advanceddjt.injector.LoginInjector
 import com.mzcloud.djt.advanceddjt.viewmodels.LoginViewModel
 import com.mzcloud.njt.module_core.ui.CheckPermissionsActivity
+import com.mzcloud.njt.module_core.utils.ToastUtil
 
 class LoginActivity : CheckPermissionsActivity() {
 
@@ -41,8 +43,12 @@ class LoginActivity : CheckPermissionsActivity() {
         loginViewModel.loginSuccess.observe(this, Observer {
             if (it) {
                 // 登录成功
+                ToastUtil.toastLong(this, "登录成功")
                 FarmMainActivity.actionStart(this)
             }
+        })
+        loginViewModel.errorMessage.observe(this, Observer {
+            ToastUtil.toastLong(this, it)
         })
     }
 

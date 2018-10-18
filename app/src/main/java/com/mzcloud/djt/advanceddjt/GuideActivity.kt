@@ -1,17 +1,11 @@
 package com.mzcloud.djt.advanceddjt
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import com.github.paolorotolo.appintro.AppIntro2
 import com.github.paolorotolo.appintro.AppIntro2Fragment
-import com.mzcloud.djt.advanceddjt.data.Configuration
-import com.mzcloud.djt.advanceddjt.injector.ConfigInjector
-import com.mzcloud.djt.advanceddjt.utils.AppUtils
-import com.mzcloud.djt.advanceddjt.viewmodels.ConfigListViewModel
 
 class GuideActivity : AppIntro2() {
 

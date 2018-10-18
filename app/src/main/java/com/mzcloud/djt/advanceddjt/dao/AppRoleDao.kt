@@ -1,8 +1,6 @@
 package com.mzcloud.djt.advanceddjt.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Query
+import androidx.room.*
 import com.mzcloud.djt.advanceddjt.data.AppRole
 
 @Dao
@@ -12,4 +10,7 @@ interface AppRoleDao {
 
     @Delete()
     fun deleteUserRoles(appRoles: List<AppRole>): Int
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertRoles(appRoles: List<AppRole>)
 }

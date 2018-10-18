@@ -4,51 +4,54 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.JsonObject
+import com.mzcloud.djt.advanceddjt.constants.Strings
 import com.mzcloud.djt.advanceddjt.data.User
 import com.mzcloud.djt.advanceddjt.repository.LoginRepository
+import com.mzcloud.djt.advanceddjt.vo.LoginUser
+import com.mzcloud.njt.module_core.brige.BaseViewModel
+import com.mzcloud.njt.module_core.http.AbObserver
+import com.mzcloud.njt.module_core.http.HttpUtil
+import com.mzcloud.njt.module_core.utils.GsonUtil
 import com.orhanobut.logger.Logger
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
-class LoginViewModel internal constructor(private val loginRepository: LoginRepository) : ViewModel() {
-    var disposable: Disposable? = null;
+class LoginViewModel internal constructor(private val loginRepository: LoginRepository) : BaseViewModel() {
 
-    val lastLoginUser: LiveData<User> = loginRepository.getLastLoginUser()
+    var lastLoginUser: LiveData<User> = loginRepository.getLastLoginUser()
 
     val loginSuccess: MutableLiveData<Boolean> = MutableLiveData()
+
+    val errorMessage: MutableLiveData<String> = MutableLiveData()
 
     init {
         loginSuccess.value = false
     }
 
     fun login(account: String, password: String) {
-        val observable = LoginObserver()
         loginRepository.login(account, password)
-                .subscribe(observable)
+                .subscribe(object : AbObserver() {
+                    override fun onSubscribe(d: Disposable) {
+                        disposables.add(d)
+                    }
+
+                    override fun success(result: String?) {
+
+                        if (result != null || result == "null") {
+                            loginSuccess.value = true
+                            val loginUser = GsonUtil.toObj<LoginUser>(result, LoginUser::class.java)
+                            loginRepository.saveUserInfo(loginUser, account, password)
+                            HttpUtil.setSessionId(loginUser.sessionId)
+                        } else {
+                            errorMessage.value = Strings.noUserInfo()
+                        }
+                    }
+
+                    override fun error(msg: String?) {
+                        loginSuccess.value = false
+                        errorMessage.value = msg
+                    }
+                })
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        disposable?.dispose()
-    }
-
-    inner class LoginObserver : Observer<JsonObject> {
-        override fun onComplete() {
-            Logger.d("login complete")
-        }
-
-        override fun onError(e: Throwable) {
-            Logger.e(e, "")
-        }
-
-        override fun onNext(t: JsonObject) {
-            loginSuccess.value = true
-            Logger.d(t)
-        }
-
-        override fun onSubscribe(d: Disposable) {
-            disposable = d
-        }
-
-    }
 }

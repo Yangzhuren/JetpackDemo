@@ -19,4 +19,5 @@
 
     <!--toast-->
     <string name="toast_repress_exit">再按一次退出</string>
+    <string name="toast_no_user_info">未获取到用户信息</string>
 </resources>

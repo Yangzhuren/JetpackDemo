@@ -6,6 +6,7 @@ import com.google.gson.JsonObject
 import com.mzcloud.njt.module_core.http.HttpConfig.APP_KEY_KEY
 import com.mzcloud.njt.module_core.http.HttpConfig.APP_KEY_VALUE
 import com.mzcloud.njt.module_core.http.HttpConfig.CONNECT_TIME_OUT
+import com.mzcloud.njt.module_core.http.HttpConfig.SESSION_ID_KEY
 import com.mzcloud.njt.module_core.utils.NetUtil
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -21,6 +22,7 @@ import java.util.concurrent.TimeUnit
 object HttpUtil {
     private lateinit var services: Services
     private lateinit var mContext: Context
+    private lateinit var mSessionId: String
 
     fun init(context: Context, baseUrl: String) {
         mContext = context
@@ -37,6 +39,10 @@ object HttpUtil {
                 .client(okHttpClient)
                 .build()
         services = retrofit.create(Services::class.java)
+    }
+
+    fun setSessionId(sessionId: String) {
+        mSessionId = sessionId
     }
 
     fun get(params: Map<String, String>): Observable<JsonObject>? {
@@ -90,6 +96,8 @@ object HttpUtil {
     private fun doBeforeRequest(params: Map<String, String>): Map<String, String> {
         val paramsModified = params.toMutableMap()
         paramsModified.put(APP_KEY_KEY, APP_KEY_VALUE)
+        if (mSessionId != null)
+            paramsModified.put(SESSION_ID_KEY, mSessionId)
         return paramsModified
     }
 

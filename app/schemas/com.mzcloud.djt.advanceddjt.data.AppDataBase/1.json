@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "dc3bad60c75fafa7679fbd2796697ea0",
+    "identityHash": "d47624399ee4e351ee05c15c9fef7c83",
     "entities": [
       {
         "tableName": "config",
@@ -38,14 +38,8 @@
       },
       {
         "tableName": "app_role",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_id` INTEGER NOT NULL, `role_code` INTEGER NOT NULL, `role_name` TEXT NOT NULL, FOREIGN KEY(`user_id`) REFERENCES `user`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER NOT NULL, `role_code` INTEGER NOT NULL, `role_name` TEXT NOT NULL, PRIMARY KEY(`user_id`, `role_code`), FOREIGN KEY(`user_id`) REFERENCES `user`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
-          {
-            "fieldPath": "gardenPlantingId",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
           {
             "fieldPath": "userId",
             "columnName": "user_id",
@@ -67,9 +61,10 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "user_id",
+            "role_code"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
         },
         "indices": [
           {
@@ -97,7 +92,7 @@
       },
       {
         "tableName": "user",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_type` INTEGER NOT NULL, `real_name` TEXT NOT NULL, `mobile` TEXT NOT NULL, `session_id` TEXT NOT NULL, `device_id` TEXT NOT NULL, `dic_ver` INTEGER NOT NULL, `date` INTEGER NOT NULL, `id` INTEGER NOT NULL, `account` TEXT NOT NULL, `password` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_type` INTEGER NOT NULL, `real_name` TEXT NOT NULL, `mobile` TEXT NOT NULL, `session_id` TEXT NOT NULL, `device_id` INTEGER NOT NULL, `dic_ver` INTEGER NOT NULL, `date` INTEGER NOT NULL, `id` INTEGER NOT NULL, `account` TEXT NOT NULL, `password` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "userType",
@@ -126,7 +121,7 @@
           {
             "fieldPath": "deviceId",
             "columnName": "device_id",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -172,7 +167,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"dc3bad60c75fafa7679fbd2796697ea0\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"d47624399ee4e351ee05c15c9fef7c83\")"
     ]
   }
 }

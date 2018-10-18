@@ -6,7 +6,7 @@ import com.mzcloud.djt.advanceddjt.utils.runOnIoThread
 
 class ConfigRepository private constructor(private val configurationDao: ConfigurationDao) {
 
-    fun getCurrentVersionOpenedRecords(version: String,onConfigGetSuccess: OnConfigGetSuccess) {
+    fun getCurrentVersionOpenedRecords(version: String?,onConfigGetSuccess: OnConfigGetSuccess) {
         runOnIoThread {
             onConfigGetSuccess.onConfigGetSuccess(configurationDao.getCurrentVersionOpenedRecords(version))
         }

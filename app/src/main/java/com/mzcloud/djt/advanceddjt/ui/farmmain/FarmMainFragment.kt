@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mzcloud.djt.advanceddjt.R
+import com.mzcloud.djt.advanceddjt.viewmodels.FarmMainViewModel
 
 class FarmMainFragment : Fragment() {
 

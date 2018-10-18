@@ -1,4 +1,4 @@
-package com.mzcloud.djt.advanceddjt.ui.farmmain
+package com.mzcloud.djt.advanceddjt.viewmodels
 
 import androidx.lifecycle.ViewModel
 

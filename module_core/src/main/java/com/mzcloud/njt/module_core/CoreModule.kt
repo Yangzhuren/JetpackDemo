@@ -2,6 +2,7 @@ package com.mzcloud.njt.module_core
 
 import android.app.Application
 import com.mzcloud.njt.module_core.http.HttpUtil
+import com.mzcloud.njt.module_core.utils.AppUtil
 import com.mzcloud.njt.module_core.utils.FileUtil
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
@@ -11,6 +12,7 @@ object CoreModule {
         FileUtil.initDirs()
         HttpUtil.init(context, baseUrl)
         initLogger(isDebug)
+        AppUtil.init(context)
     }
 
     private fun initLogger(isDebug: Boolean) {
