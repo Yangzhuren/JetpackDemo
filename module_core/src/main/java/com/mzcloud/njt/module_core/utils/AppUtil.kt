@@ -23,7 +23,6 @@ object AppUtil {
     }
 
     private fun getPackageInfo(): PackageInfo? {
-        if (mContext == null) return null
         val packageManager = mContext.packageManager
         return packageManager.getPackageInfo(mContext.packageName, 0)
     }

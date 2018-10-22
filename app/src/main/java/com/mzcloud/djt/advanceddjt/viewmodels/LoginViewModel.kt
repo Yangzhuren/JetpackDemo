@@ -4,13 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.JsonObject
-import com.mzcloud.djt.advanceddjt.constants.Strings
+import com.mzcloud.djt.advanceddjt.constants.noUserInfo
+import com.mzcloud.djt.advanceddjt.data.AppRole
 import com.mzcloud.djt.advanceddjt.data.User
 import com.mzcloud.djt.advanceddjt.repository.LoginRepository
 import com.mzcloud.djt.advanceddjt.vo.LoginUser
 import com.mzcloud.njt.module_core.brige.BaseViewModel
 import com.mzcloud.njt.module_core.http.AbObserver
 import com.mzcloud.njt.module_core.http.HttpUtil
+import com.mzcloud.njt.module_core.utils.AESCrypt
 import com.mzcloud.njt.module_core.utils.GsonUtil
 import com.orhanobut.logger.Logger
 import io.reactivex.Observer
@@ -19,6 +21,8 @@ import io.reactivex.disposables.Disposable
 class LoginViewModel internal constructor(private val loginRepository: LoginRepository) : BaseViewModel() {
 
     var lastLoginUser: LiveData<User> = loginRepository.getLastLoginUser()
+
+    var currentAppRoles: MutableLiveData<List<AppRole>> = MutableLiveData()
 
     val loginSuccess: MutableLiveData<Boolean> = MutableLiveData()
 
@@ -42,8 +46,9 @@ class LoginViewModel internal constructor(private val loginRepository: LoginRepo
                             val loginUser = GsonUtil.toObj<LoginUser>(result, LoginUser::class.java)
                             loginRepository.saveUserInfo(loginUser, account, password)
                             HttpUtil.setSessionId(loginUser.sessionId)
+                            currentAppRoles.value = loginUser.appRole
                         } else {
-                            errorMessage.value = Strings.noUserInfo()
+                            errorMessage.value = noUserInfo
                         }
                     }
 

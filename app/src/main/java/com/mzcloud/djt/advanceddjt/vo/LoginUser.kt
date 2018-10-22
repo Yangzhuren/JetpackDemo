@@ -11,5 +11,5 @@ data class LoginUser(
         val appRole: List<AppRole>,
         val sessionId: String,
         val dicVer: Int,
-        val deviceId: Long
+        val deviceId: String
 )

@@ -20,7 +20,7 @@ abstract class AbObserver : Observer<JsonObject> {
 
     override fun onNext(t: JsonObject) {
         val httpResponse = GsonUtil.toObj(t, HttpResponse::class.java)
-        if (httpResponse.success && httpResponse.code === 200) {
+        if (httpResponse.success && httpResponse.code == 200) {
             val result = httpResponse.result.toString()
             if (result == "null") {
                 success(null)

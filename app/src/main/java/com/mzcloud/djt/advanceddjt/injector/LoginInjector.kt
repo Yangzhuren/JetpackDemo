@@ -18,7 +18,8 @@ object LoginInjector {
     }
 
     fun provideUser(loginUser: LoginUser, account: String, password: String): User {
-        val user = User(loginUser.userId, account, password)
+        val user = User(loginUser.userId, account);
+        user.password = password
         user.sessionId = loginUser.sessionId
         user.userType = loginUser.userType
         user.deviceId = loginUser.deviceId
@@ -28,7 +29,7 @@ object LoginInjector {
         return user
     }
 
-    fun provideAppRoles(loginUser: LoginUser):List<AppRole>{
+    fun provideAppRoles(loginUser: LoginUser): List<AppRole> {
         return loginUser.appRole.map {
             it.userId = loginUser.userId
             it

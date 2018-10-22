@@ -8,6 +8,6 @@ class InitialWorker(context: Context, workerParameters: WorkerParameters) : Work
 
     override fun doWork(): Result {
         // do something after db init
-        return Worker.Result.SUCCESS
+        return Result.SUCCESS
     }
 }

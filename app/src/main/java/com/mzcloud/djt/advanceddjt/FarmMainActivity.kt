@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.mzcloud.djt.advanceddjt.databinding.FarmMainActivityBinding
+import com.mzcloud.djt.advanceddjt.utils.toast
 import java.util.*
 
 class FarmMainActivity : AppCompatActivity() {
@@ -48,7 +49,7 @@ class FarmMainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
-        } else if (navController.currentDestination?.id === R.id.home_fragment) {
+        } else if (navController.currentDestination?.id == R.id.home_fragment) {
             exitApp()
         } else
             super.onBackPressed()
@@ -63,7 +64,7 @@ class FarmMainActivity : AppCompatActivity() {
             super.onBackPressed()
         } else {
             prePressedTimestamp = currentTimestamp
-            Toast.makeText(this, resources.getString(R.string.toast_repress_exit), Toast.LENGTH_SHORT).show()
+            toast(R.string.toast_repress_exit)
         }
     }
 

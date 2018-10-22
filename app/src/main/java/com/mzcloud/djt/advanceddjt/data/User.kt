@@ -2,7 +2,6 @@ package com.mzcloud.djt.advanceddjt.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import java.util.*
 
@@ -11,9 +10,11 @@ import java.util.*
 )
 data class User(
         @PrimaryKey(autoGenerate = false) @ColumnInfo(name = "id") val userId: Long,
-        @ColumnInfo(name = "account") val account: String = "",
-        @ColumnInfo(name = "password") val password: String = ""
+        @ColumnInfo(name = "account") val account: String = ""
 ) {
+    @ColumnInfo(name = "password")
+    var password: String = ""
+
     @ColumnInfo(name = "user_type")
     var userType: Int = 0
 
@@ -27,7 +28,7 @@ data class User(
     var sessionId: String = ""
 
     @ColumnInfo(name = "device_id")
-    var deviceId: Long = 0
+    var deviceId: String = ""
 
     @ColumnInfo(name = "dic_ver")
     var dicVer: Int = 0

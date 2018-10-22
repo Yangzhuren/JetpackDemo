@@ -3,6 +3,8 @@
     <!--hint-->
     <string name="hint_login_account">账号</string>
     <string name="hint_login_password">密码</string>
+    <string name="hint_invalidate_account">请输入正确的11位账号</string>
+    <string name="hint_invalidate_password">密码字数过少</string>
     <!--button-->
     <string name="btn_login">登 录</string>
 
@@ -20,4 +22,6 @@
     <!--toast-->
     <string name="toast_repress_exit">再按一次退出</string>
     <string name="toast_no_user_info">未获取到用户信息</string>
+    <string name="toast_login_success">登录成功</string>
+    <string name="toast_login_info_miss">用户信息为空</string>
 </resources>

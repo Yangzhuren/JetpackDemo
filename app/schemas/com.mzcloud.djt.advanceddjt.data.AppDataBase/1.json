@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "d47624399ee4e351ee05c15c9fef7c83",
+    "identityHash": "c053a398b0617cb3ed58e25955759ed8",
     "entities": [
       {
         "tableName": "config",
@@ -92,7 +92,7 @@
       },
       {
         "tableName": "user",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_type` INTEGER NOT NULL, `real_name` TEXT NOT NULL, `mobile` TEXT NOT NULL, `session_id` TEXT NOT NULL, `device_id` INTEGER NOT NULL, `dic_ver` INTEGER NOT NULL, `date` INTEGER NOT NULL, `id` INTEGER NOT NULL, `account` TEXT NOT NULL, `password` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_type` INTEGER NOT NULL, `real_name` TEXT NOT NULL, `mobile` TEXT NOT NULL, `session_id` TEXT NOT NULL, `device_id` TEXT NOT NULL, `dic_ver` INTEGER NOT NULL, `date` INTEGER NOT NULL, `id` INTEGER NOT NULL, `account` TEXT NOT NULL, `password` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "userType",
@@ -121,7 +121,7 @@
           {
             "fieldPath": "deviceId",
             "columnName": "device_id",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -167,7 +167,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"d47624399ee4e351ee05c15c9fef7c83\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"c053a398b0617cb3ed58e25955759ed8\")"
     ]
   }
 }

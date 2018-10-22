@@ -28,7 +28,45 @@ android {
                                      "$projectDir/schemas".toString()]
             }
         }
+
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "default_channel"]
+        flavorDimensions "versionCode"
     }
+
+    signingConfigs {
+        release {
+            keyAlias 'nongjiantong'
+            keyPassword 'nongjiantong'
+            storeFile file('njt.jks')
+            storePassword 'nongjiantong'
+        }
+        debug {
+            keyAlias 'nongjiantong'
+            keyPassword 'nongjiantong'
+            storeFile file('njt.jks')
+            storePassword 'nongjiantong'
+        }
+    }
+
+
+    productFlavors {
+        pro {}
+        dev {
+            applicationId 'com.mzcloud.njt'
+        }
+    }
+
+    productFlavors.all { flavor ->
+//        if (name == 'zhengshi') {
+//            flavor.manifestPlaceholders.AMAP_API_KEY = '7c7164a0191a9295a9a93873ed4fc4a2'
+//        }else if (name == 'yikong') {
+//            flavor.manifestPlaceholders.AMAP_API_KEY = '667c85277d783a125d836592a7174f3a'
+//        } else if (name == 'chongge') {
+//            flavor.manifestPlaceholders.AMAP_API_KEY = '2ec5eec5a505b0ceef4b57b617ca5b53'
+//        }
+        flavor.manifestPlaceholders.UMENG_CHANNEL_VALUE = name
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -42,10 +80,10 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-alpha1'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0-alpha1'
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
     implementation "android.arch.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
@@ -74,6 +112,8 @@ dependencies {
     //others
     implementation "com.github.paolorotolo:appintro:$rootProject.appintroVersion"
     implementation "de.hdodenhof:circleimageview:$rootProject.circleimageviewVersion"
+    implementation "com.marshalchen.ultimaterecyclerview:library:$ultimaterecyclerviewVersion"
+
 
     // debug
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.3'

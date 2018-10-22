@@ -1,11 +1,13 @@
 package com.mzcloud.djt.advanceddjt.constants
 
-import android.content.Context
 import com.mzcloud.djt.advanceddjt.MainApplication
 import com.mzcloud.djt.advanceddjt.R
 
-object Strings {
-    val context: Context = MainApplication.getContext()
 
-    fun noUserInfo() = context.resources.getString(R.string.toast_no_user_info)
-}
+val noUserInfo: String = MainApplication.getContext().resources.getString(R.string.toast_no_user_info)
+
+val loginSuccess: String = MainApplication.getContext().resources.getString(R.string.toast_login_success)
+
+val invalidateAccount: String = MainApplication.getContext().resources.getString(R.string.hint_invalidate_account)
+
+val invalidatePassword: String = MainApplication.getContext().resources.getString(R.string.hint_invalidate_password)

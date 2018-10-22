@@ -22,9 +22,18 @@
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:textSize">@dimen/btn_text_size</item>
-        <item name="android:textColor">@color/colorBtnText</item>
+        <item name="android:textColor">@color/colorWhite</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
+    <style name="btn_login_role_choose" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:background">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/btn_text_size</item>
+        <item name="android:textColor">@color/colorDark</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
 </resources>

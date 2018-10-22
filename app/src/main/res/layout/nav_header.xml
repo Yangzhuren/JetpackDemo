@@ -22,7 +22,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-        android:textColor="@color/colorBtnText"
+        android:textColor="@color/colorWhite"
         android:textSize="@dimen/btn_text_size"
         tools:text="人名" />
 

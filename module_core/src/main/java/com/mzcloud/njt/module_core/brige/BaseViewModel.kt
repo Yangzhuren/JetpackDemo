@@ -10,7 +10,7 @@ abstract class BaseViewModel : ViewModel() {
         super.onCleared()
         if (!disposables.isEmpty()) {
             disposables.map {
-                if (!it?.isDisposed) {
+                if (!it.isDisposed) {
                     it.dispose()
                 }
             }

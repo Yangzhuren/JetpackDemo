@@ -2,6 +2,7 @@ package com.mzcloud.njt.module_core.http
 
 import android.accounts.NetworkErrorException
 import android.content.Context
+import android.text.TextUtils
 import com.google.gson.JsonObject
 import com.mzcloud.njt.module_core.http.HttpConfig.APP_KEY_KEY
 import com.mzcloud.njt.module_core.http.HttpConfig.APP_KEY_VALUE
@@ -22,7 +23,7 @@ import java.util.concurrent.TimeUnit
 object HttpUtil {
     private lateinit var services: Services
     private lateinit var mContext: Context
-    private lateinit var mSessionId: String
+    private var mSessionId: String = ""
 
     fun init(context: Context, baseUrl: String) {
         mContext = context
@@ -50,9 +51,6 @@ object HttpUtil {
     }
 
     fun get(cacheKey: String?, params: Map<String, String>): Observable<JsonObject>? {
-        if (!isInit()) {
-            throw RuntimeException("Please call CoreModule.init() before get")
-        }
         val modifiedParams = doBeforeRequest(params)
         if (!NetUtil.isConnected(mContext)) return ifNoNet()
         if (cacheKey != null) {
@@ -66,24 +64,11 @@ object HttpUtil {
     }
 
     fun post(params: Map<String, String>): Observable<JsonObject> {
-        if (!isInit()) {
-            throw RuntimeException("Please call CoreModule.init() before post")
-        }
         if (!NetUtil.isConnected(mContext)) return ifNoNet()
         val modifiedParams = doBeforeRequest(params)
         return services.post(modifiedParams)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-    }
-
-    /**
-     * 判断是否已初始化
-     */
-    private fun isInit(): Boolean {
-        if (services == null) {
-            return false
-        }
-        return true
     }
 
     /**
@@ -96,7 +81,7 @@ object HttpUtil {
     private fun doBeforeRequest(params: Map<String, String>): Map<String, String> {
         val paramsModified = params.toMutableMap()
         paramsModified.put(APP_KEY_KEY, APP_KEY_VALUE)
-        if (mSessionId != null)
+        if (!TextUtils.isEmpty(mSessionId))
             paramsModified.put(SESSION_ID_KEY, mSessionId)
         return paramsModified
     }

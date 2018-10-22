@@ -27,12 +27,12 @@ class RequestInterceptor : Interceptor {
             }
         }
 
-        Logger.d("Sending request :method:%s%nurl:%s", method, url)
+        Logger.e("Sending request :method:%s%nurl:%s", method, url)
 
         val response = chain.proceed(request)
 
         val endTime = System.currentTimeMillis()
-        Logger.d("Received response for %s in %sms%n%s", url, endTime - startTime, response.peekBody(1024 * 1024).string())
+        Logger.e("Received response for %s in %sms%n%s", url, endTime - startTime, response.peekBody(1024 * 1024).string())
         return response
     }
 }
