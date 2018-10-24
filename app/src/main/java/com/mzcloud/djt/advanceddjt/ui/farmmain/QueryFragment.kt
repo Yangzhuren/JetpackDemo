@@ -10,10 +10,10 @@ import android.view.ViewGroup
 import com.mzcloud.djt.advanceddjt.R
 import com.mzcloud.djt.advanceddjt.viewmodels.FarmTrendViewModel
 
-class FarmTrendFragment : Fragment() {
+class QueryFragment : Fragment() {
 
     companion object {
-        fun newInstance() = FarmTrendFragment()
+        fun newInstance() = QueryFragment()
     }
 
     private lateinit var viewModel: FarmTrendViewModel

@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/trend_fragment"
-        android:name="com.mzcloud.djt.advanceddjt.ui.farmmain.FarmTrendFragment"
+        android:name="com.mzcloud.djt.advanceddjt.ui.farmmain.QueryFragment"
         android:label="@string/menu_trend"
         tools:layout="@layout/farm_trend_fragment" />
 
