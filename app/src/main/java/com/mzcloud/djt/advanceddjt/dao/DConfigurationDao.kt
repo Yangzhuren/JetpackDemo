@@ -7,10 +7,10 @@ import androidx.room.Query
 import com.mzcloud.djt.advanceddjt.data.Configuration
 
 @Dao
-interface ConfigurationDao {
+interface DConfigurationDao {
 
     @Query("select *from config where open_version = :version")
-    fun getCurrentVersionOpenedRecords(version: String?): List<Configuration>
+    fun getCurrentVersionOpenedRecords(version: String?): LiveData<List<Configuration>>
 
     @Insert
     fun insertCurrentOpenRecord(configuration: Configuration): Long

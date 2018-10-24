@@ -80,17 +80,22 @@
                     android:inputType="textPassword"
                     android:maxLength="@integer/login_password_max_length"
                     android:maxLines="@integer/login_max_line"
-                    android:text="@{viewModel.lastLoginUser.password}"
-                    android:textSize="@dimen/login_edit_text_size" />
+                    android:textSize="@dimen/login_edit_text_size"
+                    app:editPassword="@{viewModel.lastLoginUser.password}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
+            <com.mzcloud.njt.module_core.ui.LoadingButton
                 android:id="@+id/login_btn_login"
-                style="@style/btn_active"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/login_btn_margin_top"
-                android:text="@string/btn_login"
-                app:layout_constraintTop_toBottomOf="@+id/til_password" />
+                android:foreground="?android:attr/selectableItemBackground"
+                app:backgroundColor="@color/colorPrimary"
+                app:layout_constraintTop_toBottomOf="@+id/til_password"
+                app:loading="@{viewModel.loading}"
+                app:text="@string/btn_login"
+                app:textColor="@color/colorWhite" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

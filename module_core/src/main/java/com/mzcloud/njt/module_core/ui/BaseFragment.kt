@@ -19,13 +19,13 @@ abstract class BaseFragment : Fragment(), View.OnClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initData()
+        initData(savedInstanceState)
         initListeners()
     }
 
     abstract fun bindLayout(inflater: LayoutInflater, container: ViewGroup?): View
 
-    open fun initData() {}
+    open fun initData(savedInstanceState: Bundle?) {}
 
     open fun initListeners() {}
 

@@ -8,18 +8,18 @@ import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import com.mzcloud.djt.advanceddjt.dao.AppRoleDao
-import com.mzcloud.djt.advanceddjt.dao.ConfigurationDao
-import com.mzcloud.djt.advanceddjt.dao.UserDao
+import com.mzcloud.djt.advanceddjt.dao.DAppRoleDao
+import com.mzcloud.djt.advanceddjt.dao.DConfigurationDao
+import com.mzcloud.djt.advanceddjt.dao.DUserDao
 import com.mzcloud.djt.advanceddjt.utils.DATABASE_NAME
 import com.mzcloud.djt.advanceddjt.workers.InitialWorker
 
 @Database(entities = [Configuration::class, AppRole::class, User::class], version = 1, exportSchema = true)
 @TypeConverters(Converts::class)
 abstract class AppDataBase : RoomDatabase() {
-    abstract fun configurationDao(): ConfigurationDao
-    abstract fun appRoleDao(): AppRoleDao
-    abstract fun userDao(): UserDao
+    abstract fun configurationDao(): DConfigurationDao
+    abstract fun appRoleDao(): DAppRoleDao
+    abstract fun userDao(): DUserDao
 
     companion object {
         @Volatile

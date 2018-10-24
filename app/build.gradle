@@ -57,13 +57,11 @@ android {
     }
 
     productFlavors.all { flavor ->
-//        if (name == 'zhengshi') {
-//            flavor.manifestPlaceholders.AMAP_API_KEY = '7c7164a0191a9295a9a93873ed4fc4a2'
-//        }else if (name == 'yikong') {
-//            flavor.manifestPlaceholders.AMAP_API_KEY = '667c85277d783a125d836592a7174f3a'
-//        } else if (name == 'chongge') {
-//            flavor.manifestPlaceholders.AMAP_API_KEY = '2ec5eec5a505b0ceef4b57b617ca5b53'
-//        }
+        if (name == 'pro') {
+            flavor.manifestPlaceholders.AMAP_API_KEY = '0341b46b5abdd7b0b3b45602b2dbf53f'
+        } else if (name == 'dev') {
+            flavor.manifestPlaceholders.AMAP_API_KEY = '7d413b36098dc11092bf39c200183b8d'
+        }
         flavor.manifestPlaceholders.UMENG_CHANNEL_VALUE = name
     }
 
@@ -113,7 +111,10 @@ dependencies {
     implementation "com.github.paolorotolo:appintro:$rootProject.appintroVersion"
     implementation "de.hdodenhof:circleimageview:$rootProject.circleimageviewVersion"
     implementation "com.marshalchen.ultimaterecyclerview:library:$ultimaterecyclerviewVersion"
-
+    // 地图
+    implementation "com.amap.api:navi-3dmap:latest.integration"
+    implementation "com.amap.api:location:latest.integration"
+    implementation "com.amap.api:search:latest.integration"
 
     // debug
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.3'

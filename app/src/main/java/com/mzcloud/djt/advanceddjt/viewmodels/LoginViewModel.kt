@@ -1,5 +1,6 @@
 package com.mzcloud.djt.advanceddjt.viewmodels
 
+import android.os.Handler
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,25 +29,35 @@ class LoginViewModel internal constructor(private val loginRepository: LoginRepo
 
     val errorMessage: MutableLiveData<String> = MutableLiveData()
 
+    val loading: MutableLiveData<Boolean> = MutableLiveData()
+
     init {
         loginSuccess.value = false
+        loading.value = false
     }
 
     fun login(account: String, password: String) {
+        loading.value = true
         loginRepository.login(account, password)
                 .subscribe(object : AbObserver() {
                     override fun onSubscribe(d: Disposable) {
                         disposables.add(d)
                     }
 
+                    override fun onComplete() {
+                        loading.value = false
+                    }
+
                     override fun success(result: String?) {
 
                         if (result != null || result == "null") {
+
                             loginSuccess.value = true
                             val loginUser = GsonUtil.toObj<LoginUser>(result, LoginUser::class.java)
                             loginRepository.saveUserInfo(loginUser, account, password)
                             HttpUtil.setSessionId(loginUser.sessionId)
                             currentAppRoles.value = loginUser.appRole
+
                         } else {
                             errorMessage.value = noUserInfo
                         }

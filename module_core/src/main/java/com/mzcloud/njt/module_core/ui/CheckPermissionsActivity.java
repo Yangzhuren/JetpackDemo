@@ -25,9 +25,9 @@ import androidx.appcompat.app.AppCompatActivity;
  * 继承了Activity，实现Android6.0的运行时权限检测
  * 需要进行运行时权限检测的Activity可以继承这个类
  *
+ * @author hongming.wang
  * @创建时间：2016年5月27日 下午3:01:31
  * @项目名称： AMapLocationDemo
- * @author hongming.wang
  * @文件名称：PermissionsChecker.java
  * @类型名称：PermissionsChecker
  * @since 2.5.0
@@ -46,6 +46,9 @@ public class CheckPermissionsActivity extends AppCompatActivity {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_WIFI_STATE,
             Manifest.permission.CHANGE_WIFI_STATE,
+            Manifest.permission.BLUETOOTH,
+            Manifest.permission.BLUETOOTH_ADMIN,
+            Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
     };
 
     private static final int PERMISSON_REQUESTCODE = 0;
@@ -67,10 +70,8 @@ public class CheckPermissionsActivity extends AppCompatActivity {
     }
 
     /**
-     *
      * @param permissions
      * @since 2.5.0
-     *
      */
     private void checkPermissions(String... permissions) {
         try {
@@ -96,19 +97,18 @@ public class CheckPermissionsActivity extends AppCompatActivity {
      * @param permissions
      * @return
      * @since 2.5.0
-     *
      */
     private List<String> findDeniedPermissions(String[] permissions) {
         List<String> needRequestPermissonList = new ArrayList<String>();
         if (Build.VERSION.SDK_INT >= 23
-                && getApplicationInfo().targetSdkVersion >= 23){
+                && getApplicationInfo().targetSdkVersion >= 23) {
             try {
                 for (String perm : permissions) {
                     Method checkSelfMethod = getClass().getMethod("checkSelfPermission", String.class);
                     Method shouldShowRequestPermissionRationaleMethod = getClass().getMethod("shouldShowRequestPermissionRationale",
                             String.class);
-                    if ((Integer)checkSelfMethod.invoke(this, perm) != PackageManager.PERMISSION_GRANTED
-                            || (Boolean)shouldShowRequestPermissionRationaleMethod.invoke(this, perm)) {
+                    if ((Integer) checkSelfMethod.invoke(this, perm) != PackageManager.PERMISSION_GRANTED
+                            || (Boolean) shouldShowRequestPermissionRationaleMethod.invoke(this, perm)) {
                         needRequestPermissonList.add(perm);
                     }
                 }
@@ -121,10 +121,10 @@ public class CheckPermissionsActivity extends AppCompatActivity {
 
     /**
      * 检测是否所有的权限都已经授权
+     *
      * @param grantResults
      * @return
      * @since 2.5.0
-     *
      */
     private boolean verifyPermissions(int[] grantResults) {
         for (int result : grantResults) {
@@ -149,7 +149,6 @@ public class CheckPermissionsActivity extends AppCompatActivity {
      * 显示提示信息
      *
      * @since 2.5.0
-     *
      */
     private void showMissingPermissionDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -165,9 +164,11 @@ public class CheckPermissionsActivity extends AppCompatActivity {
                 });
 
         builder.setPositiveButton(R.string.setting, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {startAppSettings();}
-                });
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startAppSettings();
+            }
+        });
 
         builder.setCancelable(false);
 
@@ -175,10 +176,9 @@ public class CheckPermissionsActivity extends AppCompatActivity {
     }
 
     /**
-     *  启动应用的设置
+     * 启动应用的设置
      *
      * @since 2.5.0
-     *
      */
     private void startAppSettings() {
         Intent intent = new Intent(
@@ -189,7 +189,7 @@ public class CheckPermissionsActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             this.finish();
             return true;
         }

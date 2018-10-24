@@ -14,15 +14,15 @@ object AppUtil {
         mContext = context
     }
 
-    fun getAppVersionCode(): Long? {
-        return getPackageInfo()?.longVersionCode
+    fun getAppVersionCode(): Long {
+        return getPackageInfo().longVersionCode
     }
 
-    fun getAppVersionName(): String? {
-        return getPackageInfo()?.versionName
+    fun getAppVersionName(): String {
+        return getPackageInfo().versionName
     }
 
-    private fun getPackageInfo(): PackageInfo? {
+    private fun getPackageInfo(): PackageInfo {
         val packageManager = mContext.packageManager
         return packageManager.getPackageInfo(mContext.packageName, 0)
     }
@@ -36,7 +36,7 @@ object AppUtil {
         return Build.MODEL
     }
 
-    fun getDeviceVersion():String{
+    fun getDeviceVersion(): String {
         return Build.MODEL + " Android " + Build.VERSION.RELEASE + " " + Build.VERSION.SDK_INT
     }
 }

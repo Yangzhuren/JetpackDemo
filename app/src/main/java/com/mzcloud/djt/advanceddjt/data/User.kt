@@ -3,6 +3,7 @@ package com.mzcloud.djt.advanceddjt.data
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.mzcloud.njt.module_core.utils.AESCrypt
 import java.util.*
 
 @Entity(

@@ -8,7 +8,7 @@ import androidx.room.Query
 import com.mzcloud.djt.advanceddjt.data.User
 
 @Dao
-interface UserDao {
+interface DUserDao {
     @Query("SELECT *FROM user")
     fun getLoginUsers(): LiveData<List<User>>
 

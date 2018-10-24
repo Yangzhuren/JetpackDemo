@@ -1,7 +1,7 @@
 package com.mzcloud.djt.advanceddjt
 
 import android.app.Application
-import com.mzcloud.djt.advanceddjt.constants.PampasCalls
+import com.mzcloud.djt.advanceddjt.constants.BASE_URL
 import com.mzcloud.djt.advanceddjt.data.AppRole
 import com.mzcloud.djt.advanceddjt.vo.LoginUser
 import com.mzcloud.njt.module_core.CoreModule
@@ -27,7 +27,7 @@ class MainApplication : Application() {
     // init some modules
     override fun onCreate() {
         super.onCreate()
-        CoreModule.init(this, PampasCalls.BASE_URL, BuildConfig.DEBUG)
+        CoreModule.init(this, BASE_URL, BuildConfig.DEBUG)
         instance = this
         initUmeng()
         initLifecycle()

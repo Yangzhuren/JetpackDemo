@@ -6,9 +6,8 @@ import com.mzcloud.djt.advanceddjt.repository.ConfigRepository
 
 class ConfigListViewModel internal constructor(private val configRepository: ConfigRepository, private val version: String?) : ViewModel() {
 
-    fun getOpenRecords(onConfigurationGetSuccess: ConfigRepository.OnConfigGetSuccess){
-        configRepository.getCurrentVersionOpenedRecords(version,onConfigurationGetSuccess)
-    }
+    val openRecords = configRepository.getCurrentVersionOpenedRecords(version)
+
 
     fun createOpenRecord(configuration: Configuration) {
         configRepository.createOpenRecord(configuration)

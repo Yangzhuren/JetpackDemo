@@ -10,7 +10,7 @@ import com.orhanobut.logger.PrettyFormatStrategy
 object CoreModule {
     fun init(context: Application, baseUrl: String, isDebug: Boolean) {
         FileUtil.initDirs()
-        HttpUtil.init(context, baseUrl)
+        HttpUtil.init(context, baseUrl,isDebug)
         initLogger(isDebug)
         AppUtil.init(context)
     }

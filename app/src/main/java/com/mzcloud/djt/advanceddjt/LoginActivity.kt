@@ -3,7 +3,6 @@ package com.mzcloud.djt.advanceddjt
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -18,9 +17,8 @@ import com.mzcloud.djt.advanceddjt.injector.LoginInjector
 import com.mzcloud.djt.advanceddjt.utils.toast
 import com.mzcloud.djt.advanceddjt.viewmodels.LoginViewModel
 import com.mzcloud.njt.module_core.ui.CheckPermissionsActivity
+import com.mzcloud.njt.module_core.utils.AESCrypt
 import com.mzcloud.njt.module_core.utils.Dialogs
-import com.mzcloud.njt.module_core.utils.ToastUtil
-import com.rey.material.app.BottomSheetDialog
 
 class LoginActivity : CheckPermissionsActivity() {
 
@@ -35,7 +33,7 @@ class LoginActivity : CheckPermissionsActivity() {
         super.onCreate(savedInstanceState)
         val factory = LoginInjector.provideLoginViewModelFactory(this)
         val loginViewModel = ViewModelProviders.of(this, factory).get(LoginViewModel::class.java)
-        DataBindingUtil.setContentView<ActivityLoginBinding>(
+        val binding = DataBindingUtil.setContentView<ActivityLoginBinding>(
                 this, R.layout.activity_login
         ).apply {
             viewModel = loginViewModel
@@ -48,6 +46,9 @@ class LoginActivity : CheckPermissionsActivity() {
                 }
             }
         }
+        loginViewModel.lastLoginUser.observe(this, Observer {
+            binding.loginEtPassword.setText(AESCrypt.decrypt(it?.password))
+        })
         loginViewModel.loginSuccess.observe(this, Observer {
             if (it) {
                 // 登录成功

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_map"
+        android:icon="@drawable/ic_amap_map"
+        android:title="标准地图" />
+    <item
+        android:id="@+id/menu_rocket"
+        android:icon="@drawable/ic_amap_rocket"
+        android:title="卫星地图" />
+    <item
+        android:id="@+id/menu_night"
+        android:icon="@drawable/ic_amap_night"
+        android:title="夜间模式" />
+
+    <item
+        android:id="@+id/menu_traffic"
+        android:icon="@drawable/ic_amap_night"
+        android:title="交通地图" />
+</menu>
