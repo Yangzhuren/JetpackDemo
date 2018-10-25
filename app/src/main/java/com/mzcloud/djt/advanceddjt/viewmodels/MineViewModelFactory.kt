@@ -2,11 +2,11 @@ package com.mzcloud.djt.advanceddjt.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.mzcloud.djt.advanceddjt.repository.LoginRepository
+import com.mzcloud.djt.advanceddjt.repository.UserRepository
 
-class LoginViewModelFactory(private val loginRepository: LoginRepository) : ViewModelProvider.NewInstanceFactory() {
+class MineViewModelFactory(val userRepository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return LoginViewModel(loginRepository) as T
+        return MineViewModel(userRepository) as T
     }
 }

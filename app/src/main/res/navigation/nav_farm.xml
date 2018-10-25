@@ -16,4 +16,21 @@
         android:label="@string/menu_trend"
         tools:layout="@layout/farm_trend_fragment" />
 
+    <fragment
+        android:id="@+id/legal_fragment"
+        android:name="com.mzcloud.djt.advanceddjt.ui.farmmain.LegalFragment"
+        android:label="@string/menu_work"
+        tools:layout="@layout/legal_fragment" />
+
+    <fragment
+        android:id="@+id/supervision_fragment"
+        android:name="com.mzcloud.djt.advanceddjt.ui.farmmain.SupervisionFragment"
+        android:label="@string/menu_wiki"
+        tools:layout="@layout/supervision_fragment" />
+
+    <fragment
+        android:id="@+id/mine_fragment"
+        android:name="com.mzcloud.djt.advanceddjt.ui.farmmain.MineFragment"
+        android:label="@string/menu_me"
+        tools:layout="@layout/mine_fragment" />
 </navigation>

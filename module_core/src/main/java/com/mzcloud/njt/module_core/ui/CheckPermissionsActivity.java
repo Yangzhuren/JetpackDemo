@@ -49,6 +49,7 @@ public class CheckPermissionsActivity extends AppCompatActivity {
             Manifest.permission.BLUETOOTH,
             Manifest.permission.BLUETOOTH_ADMIN,
             Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
+            Manifest.permission.WAKE_LOCK
     };
 
     private static final int PERMISSON_REQUESTCODE = 0;

@@ -12,17 +12,17 @@
         android:title="@string/menu_trend" />
 
     <item
-        android:id="@+id/menu_work"
+        android:id="@+id/legal_fragment"
         android:icon="@drawable/ic_nv_work_active"
         android:title="@string/menu_work" />
 
     <item
-        android:id="@+id/menu_supervision"
+        android:id="@+id/supervision_fragment"
         android:icon="@drawable/ic_nv_wiki_active"
         android:title="@string/menu_wiki" />
 
     <item
-        android:id="@+id/menu_me"
+        android:id="@+id/mine_fragment"
         android:icon="@drawable/ic_nv_mine_active"
         android:title="@string/menu_me" />
 </menu>

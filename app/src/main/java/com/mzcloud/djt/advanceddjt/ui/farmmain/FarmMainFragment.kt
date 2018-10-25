@@ -8,20 +8,28 @@ import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.location.AMapLocationListener
 import com.amap.api.maps.AMap
 import com.amap.api.maps.MapView
-import com.amap.api.maps.model.MyLocationStyle
+import com.amap.api.maps.model.*
+import com.amap.api.navi.AmapNaviPage
+import com.amap.api.navi.AmapNaviParams
+import com.amap.api.navi.AmapNaviType
+import com.amap.api.navi.INaviInfoCallback
 import com.mzcloud.djt.advanceddjt.R
 import com.mzcloud.djt.advanceddjt.databinding.FarmMainFragmentBinding
 import com.mzcloud.djt.advanceddjt.utils.toast
 import com.mzcloud.djt.advanceddjt.viewmodels.FarmMainViewModel
 import com.mzcloud.njt.module_core.ui.BaseFragment
+import com.mzcloud.djt.advanceddjt.adapter.MapInfoWindowNavigationAdapter
+import java.util.*
+
 
 class FarmMainFragment : BaseFragment() {
     private lateinit var mMap: MapView
     private lateinit var mAMap: AMap
-    private lateinit var mLocationClient: AMapLocationClient;
+    private lateinit var mLocationClient: AMapLocationClient
+    private var mCurrentPosition: LatLng? = null
     private val mLocationListener = AMapLocationListener {
         if (it.errorCode == 0) {
-
+            mCurrentPosition = LatLng(it.latitude, it.longitude)
         } else {
             toast(it.errorInfo)
         }
@@ -71,6 +79,8 @@ class FarmMainFragment : BaseFragment() {
         viewModel = ViewModelProviders.of(this).get(FarmMainViewModel::class.java)
         mMap.onCreate(savedInstanceState)
         mAMap.mapType = AMap.MAP_TYPE_SATELLITE
+
+        addMarks()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -122,4 +132,32 @@ class FarmMainFragment : BaseFragment() {
         mMap.onSaveInstanceState(outState)
     }
 
+    private fun addMarks() {
+        val markerOptionsList = arrayListOf<MarkerOptions>()
+        for (i in 1..100) {
+            var randomTN = Random().nextDouble() * 0.5
+            var randomGN = Random().nextDouble() * 0.5
+            val randomT = Random().nextFloat()
+            val randomG = Random().nextFloat()
+            if (randomT < 0.5f) {
+                randomTN *= -1
+            }
+            if (randomG < 0.5f) {
+                randomGN *= -1
+            }
+            var latitude = 31.297892 + randomTN
+            val longitude = 121.437273 + randomGN
+
+            val name = "窝$i"
+            val markerOptions = MarkerOptions().position(LatLng(latitude, longitude)).title(name).snippet("$name:$latitude,$longitude")
+            markerOptionsList.add(markerOptions)
+        }
+        mAMap.setInfoWindowAdapter(MapInfoWindowNavigationAdapter(context) { marker ->
+            val options = marker?.options
+            val start = Poi("我", mCurrentPosition, "")
+            val end = Poi(options?.title, options?.position, "")
+            AmapNaviPage.getInstance().showRouteActivity(context, AmapNaviParams(start, null, end, AmapNaviType.DRIVER), null)
+        })
+        mAMap.addMarkers(markerOptionsList, true)
+    }
 }

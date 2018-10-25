@@ -110,7 +110,6 @@ dependencies {
     //others
     implementation "com.github.paolorotolo:appintro:$rootProject.appintroVersion"
     implementation "de.hdodenhof:circleimageview:$rootProject.circleimageviewVersion"
-    implementation "com.marshalchen.ultimaterecyclerview:library:$ultimaterecyclerviewVersion"
     // 地图
     implementation "com.amap.api:navi-3dmap:latest.integration"
     implementation "com.amap.api:location:latest.integration"

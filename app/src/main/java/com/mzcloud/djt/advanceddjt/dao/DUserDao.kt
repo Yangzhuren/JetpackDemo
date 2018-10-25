@@ -15,6 +15,10 @@ interface DUserDao {
     @Query("SELECT *from user ORDER BY date DESC LIMIT(1)")
     fun getLastLoginUser(): LiveData<User>
 
+    @Query("SELECT real_name FROM user")
+    fun getUserNames(): LiveData<List<String>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(user: User): Long
+
 }

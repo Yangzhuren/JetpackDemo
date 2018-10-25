@@ -17,6 +17,7 @@ class GuideActivity : AppIntro2() {
         }
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         addSlide(AppIntro2Fragment.newInstance("title1", "description1", R.drawable.banner1, resources.getColor(R.color.colorPrimary)))
